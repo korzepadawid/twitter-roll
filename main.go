@@ -19,5 +19,8 @@ func main() {
 		log.Fatal(err)
 	}
 	
-	twitter.New(c, logger).CleanStreamRules()
+	tweet := twitter.New(c, logger)
+	if tweet.CleanStreamRules(); err != nil {
+		log.Fatal(err)
+	}
 }
