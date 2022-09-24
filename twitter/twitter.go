@@ -32,6 +32,7 @@ type TwitterClient struct {
 type Twitter interface {
 	CleanStreamRules() error
 	CreateStreamRules(r []StreamRule) error
+	Stream() (<- chan Tweet, error)
 }
 
 func New(c *config.Config, l *zap.Logger) *TwitterClient {

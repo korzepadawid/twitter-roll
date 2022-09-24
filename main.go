@@ -32,4 +32,13 @@ func main() {
 	}); err != nil {
 		log.Fatal(err)
 	}
+
+	tweetChann, err := tweet.Stream()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for t := range tweetChann {
+		logger.Info(t.Data.Text)
+	}
 }
