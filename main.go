@@ -23,4 +23,13 @@ func main() {
 	if tweet.CleanStreamRules(); err != nil {
 		log.Fatal(err)
 	}
+
+	if err := tweet.CreateStreamRules([]twitter.StreamRule{
+		{
+			Rule: c.TwitterStreamRule,
+			Tag: "sometest",
+		},
+	}); err != nil {
+		log.Fatal(err)
+	}
 }

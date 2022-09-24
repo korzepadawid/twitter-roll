@@ -4,6 +4,7 @@ import "github.com/spf13/viper"
 
 type Config struct {
 	TwitterBearerToken string`mapstructure:"TWITTER_BEARER_TOKEN"`
+	TwitterStreamRule string`mapstructure:"TWITTER_RULE"`
 }
 
 func Load(path string) (*Config, error) {
