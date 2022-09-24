@@ -2,6 +2,7 @@ package twitter
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -9,6 +10,10 @@ import (
 
 const (
 	twitterStreamAPIEndpoint = "https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,id,referenced_tweets,text"
+)
+
+var (
+	ErrTwitterStream = errors.New("failed to stream tweets")
 )
 
 type Tweet struct {
@@ -32,12 +37,17 @@ func (tC *TwitterClient) Stream() (<- chan Tweet, error) {
 		return nil, err
 	}
 	
+	if res.StatusCode != http.StatusOK {
+		return nil, ErrTwitterStream
+	}
+
 	tC.logger.Info("Starting to listen for tweets")	
 	go func (body io.Reader)  {
 		for {
 			var tweet Tweet
-			json.NewDecoder(body).Decode(&tweet)
-			tweetChann <- tweet
+			if err := json.NewDecoder(body).Decode(&tweet); err == nil {
+				tweetChann <- tweet
+			}
 		}
 	}(res.Body)
 	
