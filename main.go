@@ -12,5 +12,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	logger.Info("Started.")
+	logger.Info("Hello")
 }
