@@ -25,7 +25,6 @@ type Tweet struct {
 }
 
 func (tC *TwitterClient) Stream() (<- chan Tweet, error) {
-	tweetChann := make(chan Tweet)
 	req, err := http.NewRequest(http.MethodGet, twitterStreamAPIEndpoint, nil)
 	if err != nil {
 		return nil, err
@@ -42,6 +41,7 @@ func (tC *TwitterClient) Stream() (<- chan Tweet, error) {
 	}
 
 	tC.logger.Info("Starting to listen for tweets")	
+	tweetChann := make(chan Tweet)
 	go func (body io.Reader)  {
 		for {
 			var tweet Tweet

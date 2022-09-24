@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/korzepadawid/cules-bot/config"
@@ -39,6 +40,6 @@ func main() {
 	}
 
 	for t := range tweetChann {
-		logger.Info(t.Data.Text)
+		logger.Info(fmt.Sprintf("ID=%s AuthorID=%s Text=%s", t.Data.ID, t.Data.AuthorID, t.Data.Text))
 	}
 }
