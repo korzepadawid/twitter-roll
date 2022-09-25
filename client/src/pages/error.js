@@ -1,7 +1,3 @@
-import React from 'react';
-
-function NotFound() {
-  return <>NotFound</>;
-}
+const NotFound = () => <>not found</>;
 
 export default NotFound;

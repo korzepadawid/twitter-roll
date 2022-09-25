@@ -1,7 +1,14 @@
-import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Roll from "./roll";
+import NotFound from "./error";
 
-function App() {
-  return <>test</>;
-}
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Roll />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
