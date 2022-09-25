@@ -1,10 +1,13 @@
+import { Typography } from "@mui/material";
 import Tweets from "../components/tweets";
 
 const Roll = () => (
-  <div>
-    <h1>Personal Twitter Roll</h1>
+  <>
+    <Typography variant="h3" component="h1">
+      Twitter Roll
+    </Typography>
     <Tweets />
-  </div>
+  </>
 );
 
 export default Roll;

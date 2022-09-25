@@ -1,26 +1,34 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Tweet from "./tweet";
+import { Typography, CircularProgress } from "@mui/material";
 
 const Tweets = () => {
   const [tweets, setTweets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchTweets = async () => {
-      const { data } = await axios.get(
-        "https://mocki.io/v1/a8c39b14-b6bb-4843-8fb7-980e82b3b845"
-      );
-      console.log(data);
-      setTweets(data);
-      setIsLoading(false);
+      try {
+        const { data } = await axios.get(process.env.REACT_APP_ROLL_URL);
+        setTweets(data);
+        setIsLoading(false);
+        setIsError(false);
+      } catch {
+        setIsError(true);
+      }
     };
 
     fetchTweets();
   }, []);
 
+  if (isError) {
+    return <Typography>We can't process your request</Typography>;
+  }
+
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <CircularProgress color="inherit" />;
   }
 
   return (

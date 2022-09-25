@@ -1,35 +1,57 @@
-const Tweet = ({ tweet }) => {
-  const usersWithoutAuthor = tweet.includes.users.filter(
-    (user) => user.id !== tweet.data.author_id
-  );
-  return (
-    <div>
-      <img src={tweet.includes.users[0].profile_image_url} alt="avatar" />
-      <h3>
-        {tweet.includes.users[0].name} {`@${tweet.includes.users[0].username}`}
-      </h3>
-      <h2>{tweet.data.text}</h2>
-      <p>{tweet.data.created_at}</p>
-      <a
-        target="_blank"
-        href={`https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}`}
-        rel="noreferrer"
-      >
-        Link
-      </a>
-      <br />
-      {usersWithoutAuthor.map((user) => (
-        <a
-          key={user.id}
+import {
+  Avatar,
+  Card,
+  CardHeader,
+  Typography,
+  CardContent,
+  Chip,
+  CardActions,
+} from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import moment from "moment";
+
+const Tweet = ({ tweet }) => (
+  <Card sx={{ minWidth: 275 }}>
+    <CardHeader
+      avatar={
+        <Avatar
+          src={tweet.includes.users[0].profile_image_url}
+          alt={tweet.includes.users[0].username}
+        />
+      }
+      action={
+        <Chip
+          label="Link"
+          component="a"
+          color="primary"
           target="_blank"
-          href={`https://twitter.com/${user.username}`}
-          rel="noreferrer"
-        >
-          {user.username}
-        </a>
+          variant="outlined"
+          href={`https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data.id}`}
+          clickable
+        />
+      }
+      title={`@${tweet.includes.users[0].username}`}
+      subheader={moment(tweet.data.created_at).calendar()}
+    />
+    <CardContent>
+      <Typography variant="h6">{tweet.data.text}</Typography>
+    </CardContent>
+    <CardActions>
+      {tweet.includes.users.map(({ username }) => (
+        <Chip
+          key={username}
+          label={`@${username}`}
+          component="a"
+          icon={<PersonIcon />}
+          color="primary"
+          target="_blank"
+          variant="outlined"
+          href={`https://twitter.com/${username}`}
+          clickable
+        />
       ))}
-    </div>
-  );
-};
+    </CardActions>
+  </Card>
+);
 
 export default Tweet;
