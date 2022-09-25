@@ -1,5 +1,5 @@
 run:
-	go run -race main.go
+	go run -race .
 
 test:
 	go test -v -race -cover ./...
