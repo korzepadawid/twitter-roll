@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/korzepadawid/cules-bot/config"
+	"github.com/korzepadawid/cules-bot/handler"
 	"github.com/korzepadawid/cules-bot/roll"
 	"github.com/korzepadawid/cules-bot/twitter"
 	"go.uber.org/zap"
@@ -50,5 +52,11 @@ func main() {
 
 	// listener
 	go listen(tweetChann, r, logger)
-	select{}
+
+	// http server
+	logger.Info("Starting HTTP server")
+	http.HandleFunc("/roll", handler.Handler(r, logger))
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}
 }
