@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"bytes"
+	"encoding/json"
 
 	"github.com/korzepadawid/cules-bot/roll"
 	"github.com/korzepadawid/cules-bot/twitter"
@@ -10,8 +11,9 @@ import (
 
 func listen(tweetChann <-chan twitter.Tweet, r *roll.Roll[twitter.Tweet], logger *zap.Logger)  {
 	for t := range tweetChann {
-		tweetDetails := fmt.Sprintf("TweetID=%s Text=%s AuthorID=%s", t.Data.ID, t.Data.Text, t.Data.AuthorID)
-		logger.Info(tweetDetails)
+		tweetJSONBuff := new(bytes.Buffer)
+		json.NewEncoder(tweetJSONBuff).Encode(t)
+		logger.Info(tweetJSONBuff.String())
 		r.Add(t)
 	}
 }
