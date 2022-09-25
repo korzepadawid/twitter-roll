@@ -11,10 +11,6 @@ import (
 	"go.uber.org/zap"
 )
 
-const (
-	RollCapcity = 4
-)
-
 func main() {
 	// logger setup
 	logger, err := zap.NewProduction()
@@ -37,7 +33,7 @@ func main() {
 	if err := tweet.CreateStreamRules([]twitter.StreamRule{
 		{
 			Rule: c.TwitterStreamRule,
-			Tag: "sometest",
+			Tag: "twitter-bot",
 		},
 	}); err != nil {
 		log.Fatal(err)
@@ -48,7 +44,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r := roll.New[twitter.Tweet](RollCapcity)
+	r := roll.New[twitter.Tweet](c.RollCapcity)
 
 	// listener
 	go listen(tweetChann, r, logger)
