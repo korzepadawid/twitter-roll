@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/korzepadawid/cules-bot/config"
+	"github.com/korzepadawid/twitter-roll/config"
 	"go.uber.org/zap"
 )
 

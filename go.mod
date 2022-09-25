@@ -1,4 +1,4 @@
-module github.com/korzepadawid/cules-bot
+module github.com/korzepadawid/twitter-roll
 
 go 1.18
 

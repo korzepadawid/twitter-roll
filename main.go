@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/korzepadawid/cules-bot/config"
-	"github.com/korzepadawid/cules-bot/handler"
-	"github.com/korzepadawid/cules-bot/roll"
-	"github.com/korzepadawid/cules-bot/twitter"
+	"github.com/korzepadawid/twitter-roll/config"
+	"github.com/korzepadawid/twitter-roll/handler"
+	"github.com/korzepadawid/twitter-roll/roll"
+	"github.com/korzepadawid/twitter-roll/twitter"
 	"go.uber.org/zap"
 )
 

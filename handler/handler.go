@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/korzepadawid/cules-bot/roll"
-	"github.com/korzepadawid/cules-bot/twitter"
+	"github.com/korzepadawid/twitter-roll/roll"
+	"github.com/korzepadawid/twitter-roll/twitter"
 	"go.uber.org/zap"
 )
 
