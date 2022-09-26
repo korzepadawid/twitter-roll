@@ -31,6 +31,10 @@ const Tweets = () => {
     return <CircularProgress color="inherit" />;
   }
 
+  if (tweets.length === 0) {
+    return <Typography>No Tweets to show...</Typography>;
+  }
+
   return (
     <div>
       {tweets.map((tweet) => (

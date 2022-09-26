@@ -3,6 +3,7 @@ module github.com/korzepadawid/twitter-roll
 go 1.18
 
 require (
+	github.com/rs/cors v1.8.2
 	github.com/spf13/viper v1.13.0
 	github.com/stretchr/testify v1.8.0
 	go.uber.org/zap v1.23.0

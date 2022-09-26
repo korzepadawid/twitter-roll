@@ -11,7 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import moment from "moment";
 
 const Tweet = ({ tweet }) => (
-  <Card sx={{ minWidth: 275 }}>
+  <Card sx={{ minWidth: 275, marginTop: 2 }}>
     <CardHeader
       avatar={
         <Avatar

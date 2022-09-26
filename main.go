@@ -8,6 +8,7 @@ import (
 	"github.com/korzepadawid/twitter-roll/handler"
 	"github.com/korzepadawid/twitter-roll/roll"
 	"github.com/korzepadawid/twitter-roll/twitter"
+	"github.com/rs/cors"
 	"go.uber.org/zap"
 )
 
@@ -51,8 +52,10 @@ func main() {
 
 	// http server
 	logger.Info("Starting HTTP server")
-	http.HandleFunc("/roll", handler.Handler(r, logger))
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/roll", handler.Handler(r, logger))
+	muxHandler := cors.Default().Handler(mux)
+	if err := http.ListenAndServe(":8080", muxHandler); err != nil {
 		log.Fatal(err)
 	}
 }
