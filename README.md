@@ -23,24 +23,36 @@ Twitter bot for filtering tweets from your favourite accounts and hashtags.
 - Used Go concurrency mechanisms, such as goroutines, mutexes, and channels.
 - Implemented a frontend with React.js to expose stored tweets.
 ## Launch
-```$ git clone git@github.com:korzepadawid/twitter-roll.git```
+```
+$ git clone git@github.com:korzepadawid/twitter-roll.git
+```
 
-```$ cd twitter-roll```
+```
+$ cd twitter-roll
+```
 
 You can get your Twitter `Bearer Token` [here](https://developer.twitter.com/en/portal/dashboard).
 
-```$ echo "TWITTER_BEARER_TOKEN=<YOUR_BEARER_TOKEN>" >> app.env ```
+```
+$ echo "TWITTER_BEARER_TOKEN=<YOUR_BEARER_TOKEN>" >> app.env 
+```
 
 [Twitter Query builder](https://developer.twitter.com/apitools/query?query=) might be helpful here. You can paste whatever rule you want. 
 
-```$ echo "TWITTER_RULE=<STREAM_RULE>" >> app.env ```
+```
+$ echo "TWITTER_RULE=<STREAM_RULE>" >> app.env 
+```
 
 Specifies how many tweets can be exposed to a user.
 
-```$ echo "ROLL_CAPACITY=<ROLL_CAPACITY>" >> app.env ```
+```
+$ echo "ROLL_CAPACITY=<ROLL_CAPACITY>" >> app.env 
+```
 
 API Endpoint.
 
-```$ echo "REACT_APP_ROLL_URL=http://localhost:8080/roll" >> ./client/.env ```
+```
+$ echo "REACT_APP_ROLL_URL=http://localhost:8080/roll" >> ./client/.env 
+```
 
 
