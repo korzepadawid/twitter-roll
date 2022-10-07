@@ -18,8 +18,8 @@ var (
 )
 
 type Tweet struct {
-	Data          Data            `json:"data"`
-	Includes      Includes        `json:"includes"`
+	Data     Data     `json:"data"`
+	Includes Includes `json:"includes"`
 }
 
 type Data struct {
@@ -41,26 +41,25 @@ type Includes struct {
 	Users []Users `json:"users"`
 }
 
-
-func (tC *TwitterClient) Stream() (<- chan Tweet, error) {
+func (tC *Client) Stream() (<-chan Tweet, error) {
 	req, err := http.NewRequest(http.MethodGet, twitterStreamAPIEndpoint, nil)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", tC.bearerToken))
-	
+
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	if res.StatusCode != http.StatusOK {
 		return nil, ErrTwitterStream
 	}
 
-	tC.logger.Info("Starting to listen for tweets")	
+	tC.logger.Info("Starting to listen for tweets")
 	tweetChann := make(chan Tweet)
-	go func (body io.Reader)  {
+	go func(body io.Reader) {
 		for {
 			var tweet Tweet
 			if err := json.NewDecoder(body).Decode(&tweet); err == nil {
@@ -68,6 +67,6 @@ func (tC *TwitterClient) Stream() (<- chan Tweet, error) {
 			}
 		}
 	}(res.Body)
-	
+
 	return tweetChann, nil
 }
