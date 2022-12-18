@@ -39,7 +39,7 @@ $ echo "TWITTER_BEARER_TOKEN=<YOUR_BEARER_TOKEN>" >> app.env
 ```
 
 [Twitter Query builder](https://developer.twitter.com/apitools/query?query=) might be helpful here. You can paste whatever rule you want. 
-
+e.g. `"#FIFAWorldCup -is:retweet"`
 ```
 $ echo "TWITTER_RULE=<STREAM_RULE>" >> app.env 
 ```
@@ -50,10 +50,10 @@ Specifies how many tweets can be exposed to a user.
 $ echo "ROLL_CAPACITY=<ROLL_CAPACITY>" >> app.env 
 ```
 
-API Endpoint.
+Docker 🐳
 
 ```
-$ echo "REACT_APP_ROLL_URL=http://localhost:8080/roll" >> ./client/.env 
+$ docker-compose --env-file=app.env up --build
 ```
 
 
