@@ -10,12 +10,15 @@ const Tweets = () => {
 
   useEffect(() => {
     const fetchTweets = async () => {
+      console.log(process.env.REACT_APP_ROLL_URL);
       try {
         const { data } = await axios.get(process.env.REACT_APP_ROLL_URL);
+        console.log(data);
         setTweets(data);
         setIsLoading(false);
         setIsError(false);
-      } catch {
+      } catch (error) {
+        console.error(error)
         setIsError(true);
       }
     };
