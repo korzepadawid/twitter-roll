@@ -1,7 +1,6 @@
 # twitter-roll
 
 Twitter bot for filtering tweets from your favourite accounts and hashtags.
-[Live](https://twitter-roll.netlify.app/)
 
 ![image](https://i.ibb.co/Px7z4Zy/icon.png)
 
